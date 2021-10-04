@@ -1,0 +1,48 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    font-size: 62.5%;
+}
+
+.cards {
+    display: grid;
+    // grid-template-columns: repeat(auto-fit, minmax(300px, 700px));
+}
+
+.card {
+    height: 300px;
+    width: 270px;
+    position: relative;
+    transition: all 1s ease;
+    transform-style: preserve-3d;
+    &--active {
+        transform: rotateY(180deg);
+        transition: all 1s ease;
+    }
+}
+
+.front {
+    overflow: hidden;
+    transform: rotateY(180deg);
+    img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        user-select: none;
+    }
+}
+
+.face {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    border-radius: 10px;
+}
+
+.back {
+    background-color: #262626;
+}
