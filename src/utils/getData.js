@@ -7,11 +7,9 @@ const options = {
 
 const getData = async () => {
     const apiURL = `${API}`;
-    console.log(apiURL)
     try {
         const response = await fetch(apiURL, options);
         const data = await response.json();
-        console.log(data)
         return data
     } catch (error) {
         console.error('Fetch Error', error)
