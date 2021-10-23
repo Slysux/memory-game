@@ -1,8 +1,8 @@
-import toggleCards from './toggleCards'
+import showCardImage from './showCardImage'
 
 const start = async () => {
     const cards = document.getElementById('cards')
-    cards.addEventListener('click', toggleCards)
+    cards.addEventListener('click', showCardImage)
 }
 
 export default start

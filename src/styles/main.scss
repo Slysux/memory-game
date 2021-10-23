@@ -7,16 +7,17 @@ html {
     font-size: 62.5%;
 }
 
+.wrapper {
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
 .header {
     height: 100px;
     display: grid;
     place-items: center;
 }
 
-.wrapper {
-    max-width: 1280px;
-    margin: 0 auto;
-}
 
 .cards {
     display: grid;
