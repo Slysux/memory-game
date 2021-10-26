@@ -1,8 +1,27 @@
 import showCardImage from './showCardImage'
+import playPause from './stopwatch'
 
-const start = async () => {
-    const cards = document.getElementById('cards')
-    cards.addEventListener('click', showCardImage)
+const cards = document.getElementById('cards')
+const start = document.getElementById('start')
+let isPaused = true
+
+const startGame = async () => {
+    if (isPaused) {
+        cards.addEventListener('click', showCardImage)
+        start.innerHTML = 'Pause'
+    } else {
+        cards.removeEventListener('click', showCardImage)
+        start.innerHTML = 'Play'
+    } 
+    isPaused = !isPaused
+    playPause()
 }
 
-export default start
+const resetGame = () => {
+    const pause = document.getElementById('pause')
+    pause.addEventListener('click', () => {
+        playPause()
+    })
+}
+
+export { startGame, resetGame }

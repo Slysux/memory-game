@@ -14,10 +14,27 @@ html {
 
 .header {
     height: 100px;
+    margin-bottom: 20px;
     display: grid;
     place-items: center;
 }
 
+.details {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    &__buttons,
+    &__user {
+        display: inherit;
+        gap: 10px;
+    }
+    &__user {
+        font-size: 1.8rem;
+        span {
+            font-weight: bold;
+        }
+    }
+}
 
 .cards {
     display: grid;

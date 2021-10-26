@@ -1,9 +1,12 @@
 import Template from './templates/Template'
-import start from './utils/start'
+import { startGame, resetGame} from './utils/start'
 import './styles/main.scss'
 
 (async function App() {
-    const main = null || document.getElementById('main')
-    main.innerHTML = await Template()
-    start()
+    const cards = null || document.getElementById('cards')
+    cards.innerHTML = await Template()
+    const start = document.getElementById('start')
+    start.addEventListener('click',  () => {
+        startGame()
+    })
 })()

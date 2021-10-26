@@ -6,18 +6,14 @@ const Template = async () => {
     const newArr = await duplicate(data)
     localStorage.setItem('data', JSON.stringify(newArr))
     const view = `
-        <div class="wrapper">
-            <section class="cards" id="cards">
-                ${newArr.map(el => `
-                    <div class="card">
-                        <div class="front face">
-                            
-                        </div>
-                        <div class="back face"></div>
-                    </div>
-                `).join('')}
-            </section>
-        </div>
+        ${newArr.map(el => `
+            <div class="card">
+                <div class="front face">
+                    
+                </div>
+                <div class="back face"></div>
+            </div>
+        `).join('')}
     `
     return view;
 }

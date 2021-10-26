@@ -1,10 +1,13 @@
+import showCardImage from "./showCardImage"
+
 const hideCardImage = (arr) => {
     setTimeout(() => {
         arr.forEach(el => {
             el.parentElement.classList.remove('card--active')
             setTimeout(() => {
                 el.innerHTML = ''
-            }, 1000)
+            }, 400)
+            cards.addEventListener('click', showCardImage)
         })
     }, 1000)
 }
