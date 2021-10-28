@@ -14,11 +14,18 @@
         <div class="wrapper">
             <sections class="details">
                 <div class="details__buttons">
-                    <button id="start">Play</button>
+                    <button id="play-pause">Play</button>
                     <button id="reset">Reset</button>
+                    <label for="size">Size</label>
+                    <select name="size" id="size">
+                        <option value="8">4x4</option>
+                        <option value="10">5x4</option>
+                        <option value="12" selected>24 cartas</option>
+                        <option value="18">6x6</option>
+                    </select>
                 </div>
                 <div class="details__user">
-                    <p id="tries"><span>Tries: </span>0</p>
+                    <p id="tries">Tries: <span>0</span></p>
                     <p id="time">00:00</p>
                 </div>
             </sections>

@@ -5,9 +5,8 @@ const hideCardImage = (arr) => {
         arr.forEach(el => {
             el.parentElement.classList.remove('card--active')
             setTimeout(() => {
-                el.innerHTML = ''
-            }, 400)
-            cards.addEventListener('click', showCardImage)
+                cards.addEventListener('click', showCardImage)
+            }, 500)
         })
     }, 1000)
 }

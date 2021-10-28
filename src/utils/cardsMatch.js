@@ -4,17 +4,17 @@ import showCardImage from './showCardImage'
 
 const cardsMatch = () => {
     let cardsSelected = []
-    let tries = 0
     const addCard = (card) => {
         const triesText = document.getElementById('tries')
+        let tries = parseInt(triesText.firstElementChild.textContent)
+        console.log(tries)
         cardsSelected.push(card)
-        console.log(cardsSelected)
         if (cardsSelected.length === 2) {
             cards.removeEventListener('click', showCardImage)
             tries++
-            triesText.innerHTML = `<span>Tries: </span>${tries}`
-            console.log(tries)
-            if (cardsSelected[0].firstChild.currentSrc === cardsSelected[1].firstChild.currentSrc) {
+            triesText.innerHTML = `Tries: <span>${tries}</span>`
+            if (cardsSelected[0].firstElementChild.currentSrc === cardsSelected[1].firstElementChild.currentSrc) {
+                console.log(cardsSelected)
                 cardMatchFound()
                 cardsSelected = []
                 return true

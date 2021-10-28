@@ -3,7 +3,7 @@ let runningTime = 0
 let stopwatchInterval;
 let isPaused = true
 
-const playPause = () => {
+const playPauseCrono = () => {
     if (isPaused) {
         play()
     } else {
@@ -31,4 +31,4 @@ const calculateTime = runningTime => {
     return `${totalMinutes.toString().padStart(2, '0')}:${(totalSeconds % 60).toString().padStart(2, '0')}`
 }
 
-export default playPause
+export default playPauseCrono

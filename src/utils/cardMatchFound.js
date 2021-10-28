@@ -1,5 +1,5 @@
 import showCardImage from "./showCardImage"
-import playPause from './stopwatch'
+import playPauseCrono from './stopwatch'
 
 let pairs = 8
 
@@ -9,7 +9,7 @@ const cardMatchFound = () => {
     cards.addEventListener('click', showCardImage)
     if (pairs === 0) {
         alert('Ganaste')
-        playPause()
+        playPauseCrono()
     }
     return pairs
 }
