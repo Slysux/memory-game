@@ -1,7 +1,7 @@
 import showCardImage from "./showCardImage"
 import playPauseCrono from './stopwatch'
 
-let pairs = 8
+let pairs = parseInt(document.getElementById('size').value)
 
 const cardMatchFound = () => {
     pairs--

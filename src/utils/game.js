@@ -1,18 +1,21 @@
 import showCardImage from './showCardImage'
 import playPauseCrono from './stopwatch'
+import Template from '../templates/Template'
 
 const cards = document.getElementById('cards')
 const playPause = document.getElementById('play-pause')
 const reset = document.getElementById('reset')
 const tries = document.getElementById('tries')
+const size = document.getElementById('size')
+// const time = document.getElementById('time')
 let isPaused = true
 
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
 
 const game = () => {
-    console.log(playPause)
     playPause.addEventListener('click', playPauseGame)
     reset.addEventListener('click', resetGame)
+    size.addEventListener('change', resetGame)
 }
 
 const startGame = async () => {
@@ -36,8 +39,12 @@ const playPauseGame = async () => {
     playPauseCrono()
 }
 
-const resetGame = () => {
-    playPauseCrono()
+const resetGame = async () => {
+    tries.innerHTML = 'Tries: <span>0</span>'
+    isPaused = false
+    playPauseGame()
+    playPauseCrono(true)
+    cards.innerHTML = await Template()
 }
 
 export { game , delay }

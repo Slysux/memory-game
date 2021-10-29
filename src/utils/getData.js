@@ -5,8 +5,8 @@ const options = {
     }
 }
 
-const getData = async () => {
-    const apiURL = `${API}`;
+const getData = async (size) => {
+    const apiURL = `${API}${size}`;
     try {
         const response = await fetch(apiURL, options);
         const data = await response.json();

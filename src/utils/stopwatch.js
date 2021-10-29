@@ -3,8 +3,10 @@ let runningTime = 0
 let stopwatchInterval;
 let isPaused = true
 
-const playPauseCrono = () => {
-    if (isPaused) {
+const playPauseCrono = (reset = false) => {
+    if (reset){
+        resetCrono()
+    } else if (isPaused) {
         play()
     } else {
         pause()
@@ -23,6 +25,13 @@ const play = () => {
 const pause = () => { 
     clearInterval(stopwatchInterval)
 } 
+
+const resetCrono = () => {
+    pause()
+    runningTime = 0
+    time.innerHTML = '00:00'
+    isPaused = false
+}
 
 const calculateTime = runningTime => {
     const totalSeconds = Math.floor(runningTime / 1000)

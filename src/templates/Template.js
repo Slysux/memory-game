@@ -3,7 +3,7 @@ import duplicate from "../utils/duplicate";
 
 const Template = async () => {
     const size = document.getElementById('size')
-    const data = await getData()
+    const data = await getData(size.value)
     const newArr = await duplicate(data)
     const view = `
         ${newArr.map(el => `
