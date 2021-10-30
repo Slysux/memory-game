@@ -8,20 +8,31 @@ html {
 }
 
 .wrapper {
+    padding: 0 30px;
+    width: 100%;
     max-width: 1280px;
     margin: 0 auto;
 }
 
 .header {
-    height: 100px;
+    height: 70px;
+    width: 100%;
     margin-bottom: 20px;
-    display: grid;
-    place-items: center;
+    display: flex;
+    align-items: center;
+    h1 {
+        font-size: 4rem;
+    }
+}
+
+.main {
+    height: calc(100vh - 90px);
 }
 
 .details {
     display: flex;
     justify-content: space-between;
+    padding: 20px 0;
     margin-bottom: 20px;
     &__buttons,
     &__user {
@@ -41,21 +52,39 @@ html {
 
 .cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(170px,250px));
+    grid-template-columns: repeat(auto-fit, minmax(170px,200px));
     justify-content: center;
     place-items: center;
     gap: 20px;
+    height: calc(100% - 81px);
+    padding: 30px 0;
+    &--small {
+        @extend .cards;
+        grid-template-columns: repeat(auto-fit, minmax(170px,250px));
+    }
+    &--large {
+        @extend .cards;
+        grid-template-columns: repeat(auto-fit, minmax(170px,180px));
+    }
 }
 
 .card {
-    height: 200px;
-    width: 170px;
+    height: 100%;
+    width: 140px;
     position: relative;
     transition: all 1s ease;
     transform-style: preserve-3d;
     &--active {
         transform: rotateY(180deg);
         transition: all 1s ease;
+    }
+    &--small {
+        @extend .card;
+        width: 170px;
+    }
+    &--large {
+        @extend .card;
+        width: 120px;
     }
 }
 

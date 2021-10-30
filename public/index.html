@@ -7,21 +7,22 @@
     <title>Memo game</title>
 </head>
 <body>
-    <header class="header">
-        <h1>Concentrese</h1>
-    </header>
-    <main id="main">
-        <div class="wrapper">
+    <div class="wrapper">
+        <header class="header">
+            <h1>Concentrese</h1>
+        </header>
+        <main id="main" class="main">
             <sections class="details">
                 <div class="details__buttons">
                     <button id="play-pause">Play</button>
                     <button id="reset">Reset</button>
                     <label for="size">Size</label>
                     <select name="size" id="size">
+                        <option value="6">4x3</option>
                         <option value="8">4x4</option>
-                        <option value="10">5x4</option>
-                        <option value="12" selected>24 cartas</option>
-                        <option value="18">6x6</option>
+                        <option value="10" selected>5x4</option>
+                        <option value="12">6x4</option>
+                        <option value="15" >6x5</option>
                     </select>
                 </div>
                 <div class="details__user">
@@ -31,7 +32,7 @@
             </sections>
             <section class="cards" id="cards">
             </section>
-        </div>
-    </main>
+        </main>
+    </div>
 </body>
 </html>

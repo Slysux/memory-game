@@ -1,13 +1,14 @@
+import Template from '../templates/Template'
 import showCardImage from './showCardImage'
 import playPauseCrono from './stopwatch'
-import Template from '../templates/Template'
+import cardMatchFound from './cardMatchFound'
+import sizeStyles from './sizeStyles'
 
 const cards = document.getElementById('cards')
 const playPause = document.getElementById('play-pause')
 const reset = document.getElementById('reset')
 const tries = document.getElementById('tries')
 const size = document.getElementById('size')
-// const time = document.getElementById('time')
 let isPaused = true
 
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
@@ -44,7 +45,9 @@ const resetGame = async () => {
     isPaused = false
     playPauseGame()
     playPauseCrono(true)
+    cardMatchFound(true)
     cards.innerHTML = await Template()
+    sizeStyles()
 }
 
 export { game , delay }
