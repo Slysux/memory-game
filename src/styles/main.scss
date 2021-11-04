@@ -1,3 +1,17 @@
+:root {
+    --background: #472626;
+    --primary: #E64C4C;
+    --secundary: #E08D8D;
+    --darker: #612020;
+    --white: #FFF;
+}
+
+@mixin element-focus {
+    outline-color: var(--white);
+    outline-style: solid;
+    outline-width: 2px;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -5,6 +19,28 @@
 }
 html {
     font-size: 62.5%;
+    font-family: 'Nunito',sans-serif;
+}
+
+body {
+    background-color: var(--background);
+}
+
+.btn {
+    background-color: var(--primary);
+    border: none;
+    border-radius: 10px;
+    color: var(--white);
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.6rem;
+    padding: 10px;
+    cursor: pointer;
+    &:hover {
+        background-color: #E64C4CCC;
+    }
+    &:focus {
+        @include element-focus;
+    }
 }
 
 .wrapper {
@@ -15,33 +51,47 @@ html {
 }
 
 .header {
-    height: 70px;
+    height: 100px;
     width: 100%;
     margin-bottom: 20px;
     display: flex;
     align-items: center;
     h1 {
         font-size: 4rem;
+        color:var(--white);
     }
 }
 
 .main {
-    height: calc(100vh - 90px);
+    height: calc(100vh - 120px);
 }
 
 .details {
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    padding: 20px 0;
     margin-bottom: 20px;
     &__buttons,
-    &__user {
+    &__user,
+    .size-container {
+        width: 100%;
         display: inherit;
         gap: 10px;
+        align-items: center;
+    }
+    .size-container {
+        justify-content: center;
+        .size {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color:var(--white);
+        }
     }
     &__user {
         font-size: 1.8rem;
-        p:first-child {
+        color:var(--white);
+        justify-content: flex-end;
+        p {
             font-weight: bold;
             span {
                 font-weight: normal;
@@ -111,5 +161,53 @@ html {
 }
 
 .back {
-    background-color: #262626;
+    background-color:var(--white);
+    opacity: 0.8;
+    background-image:  repeating-radial-gradient( circle at 0 0, transparent 0,var(--white) 10px ), 
+    repeating-linear-gradient( #E08D8D55, var(--secundary) );
+    cursor: pointer;
+    &:focus {
+        @include element-focus;
+    }
 }
+
+.overlay {
+    display: grid;
+    place-items: center;
+    position:fixed;
+    top:0;
+    height: 100vh;
+    width: 100%;
+    background-color: #0005;
+    visibility: hidden;
+    overflow: hidden;
+    &.active {
+        visibility: visible;
+    }
+}
+
+.popup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 600px;
+    padding: 30px;
+    border-radius: 20px;
+    background-color:var(--white);
+    gap: 30px;
+    &__title {
+        font-size: 4rem;
+        color: indianred;
+    }
+    &__results {
+        display: flex;
+        column-gap: 20px;
+        span {
+            font-weight: bold;
+        }
+    }
+    &__time,
+    &__tries {
+        font-size: 1.6rem;
+    }
+ }

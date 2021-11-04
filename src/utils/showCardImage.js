@@ -13,14 +13,18 @@ const showCardImage = (e) => {
             }
         })
     } else if ([...e.target.classList].includes('back')) {
-        const cardTarget = e.target.previousElementSibling
-        cards.removeEventListener('click', showCardImage)
-        console.log(cardTarget)
-        setTimeout(() => {
-            cards.addEventListener('click', showCardImage)
-            checkCards(cardTarget)
-        }, 500)
-        e.target.parentElement.classList.add('card--active')
+        if ((e.type === 'keyup' && e.key === 'Enter') || e.type === 'click') {
+            const cardTarget = e.target.previousElementSibling
+            cards.removeEventListener('click', showCardImage)
+            cards.removeEventListener('keyup', showCardImage)
+            setTimeout(() => {
+                cards.addEventListener('click', showCardImage)
+                cards.addEventListener('keyup', showCardImage)
+                checkCards(cardTarget)
+            }, 500)
+            e.target.tabIndex = -1
+            e.target.parentElement.classList.add('card--active')
+        }
     }
 }
 

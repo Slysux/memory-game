@@ -1,5 +1,5 @@
 import showCardImage from "./showCardImage"
-import playPauseCrono from './stopwatch'
+import showResults from './showResults'
 
 let pairs = parseInt(document.getElementById('size').value)
 
@@ -10,9 +10,9 @@ const cardMatchFound = (reset = false) => {
         pairs--
         console.log(pairs)
         cards.addEventListener('click', showCardImage)
+        cards.addEventListener('keyup', showCardImage)
         if (pairs === 0) {
-            alert('Ganaste')
-            playPauseCrono()
+            showResults()
         }
     }
     return pairs

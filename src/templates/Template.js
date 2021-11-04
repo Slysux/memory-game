@@ -11,7 +11,7 @@ const Template = async () => {
                 <div class="front face">
                     <img src="${el.url}" alt="${el.breeds.length !== 0 ? (el.breeds[0].name + ' ') : ''}">
                 </div>
-                <div class="back face"></div>
+                <div class="back face" tabindex="0"></div>
             </div>
         `).join('')}
     `

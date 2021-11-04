@@ -20,13 +20,15 @@ const game = () => {
 }
 
 const startGame = async () => {
-    const frontCards = [...document.querySelectorAll('.card')];
+    const frontCards = [...document.querySelectorAll('#cards > *')];
+    console.log(frontCards)
     showCardImage(frontCards)
 }
 
 const playPauseGame = async () => {
     if (isPaused) {
         cards.addEventListener('click', showCardImage)
+        cards.addEventListener('keyup', showCardImage)
         playPause.innerHTML = 'Pause'
         if (tries.firstElementChild.textContent === '0') {
             startGame()
@@ -34,6 +36,7 @@ const playPauseGame = async () => {
         }
     } else {
         cards.removeEventListener('click', showCardImage)
+        cards.removeEventListener('keyup', showCardImage)
         playPause.innerHTML = 'Play'
     } 
     isPaused = !isPaused
@@ -50,4 +53,4 @@ const resetGame = async () => {
     sizeStyles()
 }
 
-export { game , delay }
+export { game , delay, resetGame }

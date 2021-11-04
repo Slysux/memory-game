@@ -18,7 +18,7 @@ const play = () => {
     let startTime = Date.now() - runningTime
     stopwatchInterval = setInterval(() => {
         runningTime = Date.now() - startTime
-        time.innerHTML = calculateTime(runningTime)
+        time.firstElementChild.innerHTML = calculateTime(runningTime)
     }, 1000)
 }
 
@@ -29,7 +29,7 @@ const pause = () => {
 const resetCrono = () => {
     pause()
     runningTime = 0
-    time.innerHTML = '00:00'
+    time.firstElementChild.innerHTML = '00:00'
     isPaused = false
 }
 

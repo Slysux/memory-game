@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&display=swap" rel="stylesheet">
     <title>Memo game</title>
 </head>
 <body>
@@ -14,10 +17,12 @@
         <main id="main" class="main">
             <sections class="details">
                 <div class="details__buttons">
-                    <button id="play-pause">Play</button>
-                    <button id="reset">Reset</button>
-                    <label for="size">Size</label>
-                    <select name="size" id="size">
+                    <button id="play-pause" class="btn">Play</button>
+                    <button id="reset" class="btn">Reset</button>
+                </div>
+                <div class="size-container">
+                    <label for="size" class="size">Size:</label>
+                    <select name="size" id="size" class="btn">
                         <option value="6">4x3</option>
                         <option value="8">4x4</option>
                         <option value="10" selected>5x4</option>
@@ -27,12 +32,13 @@
                 </div>
                 <div class="details__user">
                     <p id="tries">Tries: <span>0</span></p>
-                    <p id="time">00:00</p>
+                    <p id="time">Time: <span>00:00</span></p>
                 </div>
             </sections>
             <section class="cards" id="cards">
             </section>
         </main>
     </div>
+    <div class="overlay"></div>
 </body>
 </html>
