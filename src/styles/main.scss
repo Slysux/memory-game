@@ -1,42 +1,111 @@
-:root {
-    --background: #472626;
-    --primary: #E64C4C;
-    --secundary: #E08D8D;
-    --darker: #612020;
-    --white: #FFF;
-}
-
-@mixin element-focus {
-    outline-color: var(--white);
-    outline-style: solid;
-    outline-width: 2px;
-}
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
+html {
+    --hue: 0;
+    --saturation: 100%;
+    --lightness: 50%;
+    --white: hsl(var(--hue), calc(var(--saturation) - 100%), calc(var(--lightness) * 2));
+    --text-button: var(--white);
+    --button: var(--hue), calc(var(--saturation) / 2), var(--lightness);
+    --button-hover: hsla(var(--button), .8);
+    --outline: hsl(calc(var(--hue) + 200), calc(var(--saturation) / 2 * 1.5), calc(var(--lightness) * 1.2));
+    
+    --background-light: hsl(var(--hue), calc(var(--saturation) / 2), calc(var(--lightness) * 1.8));
+    --text-light: hsl(var(--hue), calc(var(--saturation) / 2), calc(var(--lightness) / 2));
+    --card-light: var(--hue), calc(var(--saturation) / 2), var(--lightness);
+    --card-opacity-light: hsla(var(--card-light), .3);
+    --card-background-light: hsl(var(--hue), calc(var(--saturation) / 1.5), calc(var(--lightness) / 2));
+    --switch-background-light: hsl(calc(var(--hue) + 210), calc(var(--saturation) / 2), calc(var(--lightness) / 2.5));
+    --switch-icon-light: var(--white);
+    --switch-circle-light: var(--white);
+    
+    --background-dark: hsl(var(--hue), calc(var(--saturation) / 5 * 1.5), calc(var(--lightness) / 2.5));
+    --text-dark: var(--white);
+    --card-dark: var(--hue), calc(var(--saturation)/ 2 * 1.15), calc(var(--lightness) * 1.45);
+    --card-opacity-dark: hsla(var(--card-dark), .3);
+    --card-background-dark: var(--white);
+    --switch-background-dark: hsl(calc(var(--hue) + 35), calc(var(--saturation) / 1.2), var(--lightness));
+    --switch-icon-dark: var(--white);
+    --switch-circle-dark: var(--white);
+}
+
+:root {
+    --background: var(--background-light);
+    --card: hsl(var(--card-light));
+    --card-opacity: var(--card-opacity-light);
+    --card-background: var(--card-background-light);
+    --text: var(--text-light);
+    --switch-background: var(--switch-background-light);
+    --switch-icon: var(--switch-icon-light);
+    --switch-circle: var(--switch-circle-light);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background: var(--background-dark);
+        --card: hsl(var(--card-dark));
+        --card-opacity: var(--card-opacity-dark);
+        --card-background: var(--card-background-dark);
+        --text: var(--text-dark);
+        --switch-background: var(--switch-background-dark);
+        --switch-icon: var(--switch-icon-dark);
+        --switch-circle: var(--switch-icon-dark);
+    }
+}
+
+[color-scheme="light"] {
+    --background: var(--background-light);
+    --card: hsl(var(--card-light));
+    --card-opacity: var(--card-opacity-light);
+    --card-background: var(--card-background-light);
+    --text: var(--text-light);
+    --switch-background: var(--switch-background-light);
+    --switch-icon: var(--switch-icon-light);
+    --switch-circle: var(--switch-circle-light);
+}
+
+[color-scheme="dark"] {
+    --background: var(--background-dark);
+    --card: hsl(var(--card-dark));
+    --card-opacity: var(--card-opacity-dark);
+    --card-background: var(--card-background-dark);
+    --text: var(--text-dark);
+    --switch-background: var(--switch-background-dark);
+    --switch-icon: var(--switch-icon-dark);
+    --switch-circle: var(--switch-circle-dark);
+}
+
+@mixin element-focus {
+    outline-color: var(--outline);
+    outline-style: solid;
+    outline-width: 3px;
+}
+
 html {
     font-size: 62.5%;
     font-family: 'Nunito',sans-serif;
 }
+
 
 body {
     background-color: var(--background);
 }
 
 .btn {
-    background-color: var(--primary);
+    background-color: hsl(var(--button));
     border: none;
     border-radius: 10px;
-    color: var(--white);
+    color: var(--text-button);
     font-family: 'Nunito', sans-serif;
     font-size: 1.6rem;
     padding: 10px;
     cursor: pointer;
     &:hover {
-        background-color: #E64C4CCC;
+        background-color: var(--button-hover);
     }
     &:focus {
         @include element-focus;
@@ -56,9 +125,66 @@ body {
     margin-bottom: 20px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     h1 {
         font-size: 4rem;
-        color:var(--white);
+        color: var(--text);
+    }
+    .switch {
+        --thumb-size: 20px;
+        --track-size: calc(var(--thumb-size) * 2.5);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+        position: relative;
+        & > .icons {
+            display: flex;
+            justify-content: space-between;
+            position: absolute;
+            width: 100%;
+            padding: 0 5px;
+            i {
+                font-size: 1.6rem;
+                color: var(--switch-icon);
+            }
+        }
+        & > input {
+            appearance: none;
+            cursor: pointer;
+            height: var(--thumb-size);
+            width: var(--track-size);
+            border-radius: var(--thumb-size);
+            padding: 5px;
+            box-sizing: content-box;
+            background-color: var(--switch-background);
+            display: flex;
+            &::before {
+                content: "";
+                height: var(--thumb-size);
+                width: var(--thumb-size);
+                border-radius: 50%;
+                transform: translateX(0);
+                background-color: var(--switch-circle);
+                z-index: 2;
+                transition: all .25s ease;
+            }
+            &:checked {
+                &::before {
+                    transform: translateX(calc(var(--track-size)/ 2 + 5px));
+                }
+            }
+            @media (prefers-color-scheme: dark) {
+                &::before {
+                    transform: translateX(calc(var(--track-size) / 2 + 5px));
+                }
+                &:checked {
+                    &::before {
+                        transform: translateX(0);
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -84,12 +210,12 @@ body {
         .size {
             font-size: 1.8rem;
             font-weight: bold;
-            color:var(--white);
+            color: var(--text);
         }
     }
     &__user {
         font-size: 1.8rem;
-        color:var(--white);
+        color: var(--text);
         justify-content: flex-end;
         p {
             font-weight: bold;
@@ -161,10 +287,10 @@ body {
 }
 
 .back {
-    background-color:var(--white);
+    background-color: var(--card-background);
     opacity: 0.8;
-    background-image:  repeating-radial-gradient( circle at 0 0, transparent 0,var(--white) 10px ), 
-    repeating-linear-gradient( #E08D8D55, var(--secundary) );
+    background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, var(--card-background) 10px ), 
+    repeating-linear-gradient( var(--card-opacity), var(--card) );
     cursor: pointer;
     &:focus {
         @include element-focus;
@@ -193,11 +319,11 @@ body {
     width: 600px;
     padding: 30px;
     border-radius: 20px;
-    background-color:var(--white);
+    background-color: var(--background);
     gap: 30px;
     &__title {
         font-size: 4rem;
-        color: indianred;
+        color: var(--text);
     }
     &__results {
         display: flex;
@@ -208,6 +334,7 @@ body {
     }
     &__time,
     &__tries {
+        color: var(--text);
         font-size: 1.6rem;
     }
  }
