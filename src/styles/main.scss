@@ -13,6 +13,9 @@ html {
     --button: var(--hue), calc(var(--saturation) / 2), var(--lightness);
     --button-hover: hsla(var(--button), .8);
     --outline: hsl(calc(var(--hue) + 200), calc(var(--saturation) / 2 * 1.5), calc(var(--lightness) * 1.2));
+    --font-title: clamp(2.8rem, 4vw, 4rem);
+    --font-details: clamp(1.6rem, 2vw, 2rem);
+    --font-button: clamp(1.4rem, 1.5vw, 1.8rem);
     
     --background-light: hsl(var(--hue), calc(var(--saturation) / 2), calc(var(--lightness) * 1.8));
     --text-light: hsl(var(--hue), calc(var(--saturation) / 2), calc(var(--lightness) / 2));
@@ -101,8 +104,8 @@ body {
     border-radius: 10px;
     color: var(--text-button);
     font-family: 'Nunito', sans-serif;
-    font-size: 1.6rem;
-    padding: 10px;
+    font-size: var(--font-button);
+    padding: 10px 15px;
     cursor: pointer;
     &:hover {
         background-color: var(--button-hover);
@@ -110,10 +113,15 @@ body {
     &:focus {
         @include element-focus;
     }
+    &:disabled {
+        color: hsl(0, 0%, 50%);
+        background: hsl(0, 50%, 25%);
+        cursor: not-allowed;
+    }
 }
 
 .wrapper {
-    padding: 0 30px;
+    padding: 0 20px;
     width: 100%;
     max-width: 1280px;
     margin: 0 auto;
@@ -127,11 +135,11 @@ body {
     align-items: center;
     justify-content: space-between;
     h1 {
-        font-size: 4rem;
+        font-size: var(--font-title);
         color: var(--text);
     }
     .switch {
-        --thumb-size: 20px;
+        --thumb-size: 2rem;
         --track-size: calc(var(--thumb-size) * 2.5);
         display: flex;
         align-items: center;
@@ -140,12 +148,11 @@ body {
         position: relative;
         & > .icons {
             display: flex;
-            justify-content: space-between;
+            justify-content: space-around;
             position: absolute;
             width: 100%;
-            padding: 0 5px;
             i {
-                font-size: 1.6rem;
+                font-size: calc(var(--thumb-size) / 1.25);
                 color: var(--switch-icon);
             }
         }
@@ -155,7 +162,7 @@ body {
             height: var(--thumb-size);
             width: var(--track-size);
             border-radius: var(--thumb-size);
-            padding: 5px;
+            padding: calc(var(--thumb-size) / 4);
             box-sizing: content-box;
             background-color: var(--switch-background);
             display: flex;
@@ -171,12 +178,12 @@ body {
             }
             &:checked {
                 &::before {
-                    transform: translateX(calc(var(--track-size)/ 2 + 5px));
+                    transform: translateX(calc(var(--track-size)/ 2 + calc(var(--thumb-size) / 4)));
                 }
             }
             @media (prefers-color-scheme: dark) {
                 &::before {
-                    transform: translateX(calc(var(--track-size) / 2 + 5px));
+                    transform: translateX(calc(var(--track-size) / 2 + calc(var(--thumb-size) / 4)));
                 }
                 &:checked {
                     &::before {
@@ -194,6 +201,7 @@ body {
 
 .details {
     display: flex;
+    gap: 10px;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 20px;
@@ -204,19 +212,21 @@ body {
         display: inherit;
         gap: 10px;
         align-items: center;
+        flex-wrap: wrap;
     }
     .size-container {
         justify-content: center;
         .size {
-            font-size: 1.8rem;
+            font-size: var(--font-details);
             font-weight: bold;
             color: var(--text);
         }
     }
     &__user {
-        font-size: 1.8rem;
+        font-size: var(--font-details);
         color: var(--text);
         justify-content: flex-end;
+        text-align: center;
         p {
             font-weight: bold;
             span {
@@ -224,11 +234,18 @@ body {
             }
         }
     }
+    &__mobile {
+        display:none;
+        & > input {
+            appearance: none;
+        }
+    }
 }
 
 .cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(170px,200px));
+    // grid-template-columns: repeat(auto-fit, minmax(170px,200px));
+    grid-template-columns: repeat(5, 1fr);
     justify-content: center;
     place-items: center;
     gap: 20px;
@@ -236,17 +253,20 @@ body {
     padding: 30px 0;
     &--small {
         @extend .cards;
-        grid-template-columns: repeat(auto-fit, minmax(170px,250px));
+        // grid-template-columns: repeat(auto-fit, minmax(170px,250px));
+        grid-template-columns: repeat(4, 1fr);
     }
     &--large {
         @extend .cards;
-        grid-template-columns: repeat(auto-fit, minmax(170px,180px));
+        // grid-template-columns: repeat(auto-fit, minmax(170px,180px));
+        grid-template-columns: repeat(6, 1fr);
     }
 }
 
 .card {
     height: 100%;
-    width: 140px;
+    width: 100%;
+    max-width: 140px;
     position: relative;
     transition: all 1s ease;
     transform-style: preserve-3d;
@@ -256,11 +276,11 @@ body {
     }
     &--small {
         @extend .card;
-        width: 170px;
+        max-width: 170px;
     }
     &--large {
         @extend .card;
-        width: 120px;
+        max-width: 120px;
     }
 }
 
@@ -284,6 +304,7 @@ body {
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     border-radius: 10px;
+    user-select: none;
 }
 
 .back {

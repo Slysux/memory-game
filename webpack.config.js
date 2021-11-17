@@ -41,13 +41,12 @@ module.exports = {
             template: './public/index.html'
         }),
         new MiniCssExtractPlugin(),
-        new DotEnv()
+        new DotEnv(),
     ],
     devServer: {
         static: path.join(__dirname, 'dist'),
         compress: true,
         historyApiFallback: true,
-        open: true,
     },
     optimization: {
         minimize: true,

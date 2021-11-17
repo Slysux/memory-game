@@ -3,6 +3,7 @@ import showCardImage from './showCardImage'
 import playPauseCrono from './stopwatch'
 import cardMatchFound from './cardMatchFound'
 import sizeStyles from './sizeStyles'
+import buttonsDisable from './buttonsDisable'
 
 const cards = document.getElementById('cards')
 const playPause = document.getElementById('play-pause')
@@ -29,7 +30,7 @@ const playPauseGame = async () => {
     if (isPaused) {
         cards.addEventListener('click', showCardImage)
         cards.addEventListener('keyup', showCardImage)
-        playPause.innerHTML = 'Pause'
+        playPause.innerHTML = '<i class="fas fa-pause"></i>'
         if (tries.firstElementChild.textContent === '0') {
             startGame()
             await delay(2000)
@@ -37,20 +38,22 @@ const playPauseGame = async () => {
     } else {
         cards.removeEventListener('click', showCardImage)
         cards.removeEventListener('keyup', showCardImage)
-        playPause.innerHTML = 'Play'
+        playPause.innerHTML = '<i class="fas fa-play"></i>'
     } 
     isPaused = !isPaused
     playPauseCrono()
 }
 
 const resetGame = async () => {
-    tries.innerHTML = 'Tries: <span>0</span>'
     isPaused = false
     playPauseGame()
+    buttonsDisable(true)
     playPauseCrono(true)
     cardMatchFound(true)
+    tries.innerHTML = 'Tries: <span>0</span>'
     cards.innerHTML = await Template()
     sizeStyles()
+    buttonsDisable(false)
 }
 
 export { game , delay, resetGame }

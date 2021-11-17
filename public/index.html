@@ -8,12 +8,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/12c91fb1eb.js" crossorigin="anonymous"></script>
-    <title>Memo game</title>
+    <title>Memory game</title>
 </head>
 <body>
     <div class="wrapper">
         <header class="header">
-            <h1>Concentrese</h1>
+            <h1>Memory</h1>
             <label for="switch" class="switch">
                 <input type="checkbox" role="switch" id="switch">
                 <div class="icons">
@@ -25,8 +25,8 @@
         <main id="main" class="main">
             <sections class="details">
                 <div class="details__buttons">
-                    <button id="play-pause" class="btn">Play</button>
-                    <button id="reset" class="btn">Reset</button>
+                    <button aria-label="play and pause button" id="play-pause" class="btn"><i class="fas fa-play"></i></button>
+                    <button aria-label="Stop button" id="reset" class="btn"><i class="fas fa-stop"></i></button>
                 </div>
                 <div class="size-container">
                     <label for="size" class="size">Size:</label>

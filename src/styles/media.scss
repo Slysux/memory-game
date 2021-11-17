@@ -1,0 +1,41 @@
+@media screen and (max-width: 768px) {
+    .header {
+        height: auto;
+        padding-top: 20px;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+    .details {
+        margin: 0;
+    }
+    .cards {
+        &,
+        &--small,
+        &--large {
+            height: 100%;
+        }
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .details {
+        flex-wrap: wrap;
+        justify-content: center;
+        &,
+        &__buttons,
+        &__user,
+        .size-container {
+            width:auto;
+        }
+    }
+    .cards {
+        gap: 10px;
+        grid-template-columns: repeat(4, 1fr);
+        &--small {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        &--large {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+}

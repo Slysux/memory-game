@@ -23,6 +23,7 @@ const showCardImage = (e) => {
                 checkCards(cardTarget)
             }, 500)
             e.target.tabIndex = -1
+            e.target.blur()
             e.target.parentElement.classList.add('card--active')
         }
     }
